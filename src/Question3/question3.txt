@@ -1,0 +1,65 @@
+--Question 3
+--SQL Select Statement Assessment
+
+--Create a Salesman table with the following columns and make sure Salesman_id column should be auto increment.
+
+CREATE TABLE Salesman (
+    Salesman_id INT IDENTITY(5001, 1) PRIMARY KEY,
+    Name VARCHAR(255),
+    City VARCHAR(255),
+    Commission DECIMAL(10, 2)
+);
+
+
+--Insert following records in salesman table:
+
+INSERT INTO Salesman (Name, City, Commission)
+VALUES
+    ('James Hoog', 'New York', 0.15),
+    ('Nail Knite', 'Paris', 0.13),
+    ('Pit Alex', 'London', 0.11),
+    ('Mc Lyon', 'Paris', 0.14),
+    ('Paul Adam', 'Paris', 0.13),
+    ('Lauson Hen', 'San Jose', 0.12);
+
+
+-- to display all the information from the Salesman table.
+
+select * from salesman;
+
+--to display distinct city from the Salesman table.
+
+select distinct city from salesman;
+
+-- to display all distinct rows from the Salesman table.
+
+select  distinct * from salesman
+
+--to display distinct name and city from Salesman table.
+
+select distinct name , city from salesman
+
+--to display all records but city should be "Paris"
+
+select * from salesman
+where city = 'paris';
+
+
+--SQL query to display all records but city should be "Paris" and commission should be greater than 0.14
+
+select * from salesman
+where city = 'paris' and commission > '0.14';
+
+
+-- to display all records from Salesman table but commission column should be ascending order
+
+ select * from salesman
+ order by commission;
+
+
+ --to display all records except San Jose city
+
+ select * from salesman
+ where city <> 'san Jose';
+
+
