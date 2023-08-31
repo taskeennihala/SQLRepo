@@ -1,0 +1,84 @@
+--Question 2
+--Write a SQL query to create the below tables:
+
+create table agent(
+agent_code char(6) not null,
+agent_name char(25) not null,
+working_area char(25) not null);
+
+
+
+--create a table to achieve UNIQUE constraints.
+
+ CREATE TABLE Orders (
+    ord_num DECIMAL(6) NOT NULL UNIQUE,
+    ord_amount DECIMAL(18, 8),
+    ord_date DATE NOT NULL,
+);
+
+alter table orders
+add cust_code char(6) not null,
+	agent_code char(6) not null;
+
+
+--Create Table to check UNIQUE values on more columns.
+
+ CREATE TABLE Agents (
+    agent_code CHAR(6) NOT NULL UNIQUE,
+    agent_name CHAR(25) NOT NULL UNIQUE,
+    working_area CHAR(25) NOT NULL,
+    commission DECIMAL(5, 2)
+);
+
+
+--Create Table to check UNIQUE values on more columns.
+
+ CREATE TABLE Customers (
+    cust_code CHAR(6) NOT NULL UNIQUE,
+    cust_name CHAR(25) NOT NULL,
+    cust_city CHAR(25) NOT NULL,
+    grade INTEGER,
+    agent_code CHAR(6) NOT NULL UNIQUE
+);
+
+
+--Create Table with Check constraint
+
+CREATE TABLE Agents2 (
+    agent_code CHAR(6) NOT NULL UNIQUE,
+    agent_name CHAR(25) NOT NULL UNIQUE,
+    working_area CHAR(25) NOT NULL,
+    commission INTEGER,
+    CHECK (commission < 1)
+);
+
+
+-- Alter table with check constraint.
+
+ALTER TABLE Agents
+ADD  constraint check_for_commission CHECK (commission < 1);
+
+
+-- Create table with check constraint and In operator
+
+ CREATE TABLE Agents3 (
+    agent_code CHAR(6) NOT NULL UNIQUE,
+    agent_name CHAR(25) NOT NULL UNIQUE,
+    working_area CHAR(25) NOT NULL CHECK (working_area IN ('London', 'Brisban', 'Chennai', 'Mumbai')),
+    commission INTEGER CHECK (commission < 1)
+);
+
+
+--create table using check constraint and AND, OR operator.
+
+CREATE TABLE Agents4 (
+    agent_code CHAR(6) NOT NULL UNIQUE,
+    agent_name CHAR(25) NOT NULL UNIQUE,
+    working_area CHAR(25),
+    commission DECIMAL(8, 2),
+    CHECK (
+        (commission < 0.14 AND working_area = 'London') OR
+        (commission < 0.15 AND working_area = 'Mumbai') OR
+        (commission < 0.13 AND working_area = 'New York')
+    )
+);
