@@ -1,0 +1,60 @@
+--Question 4
+-- Creating Persons table
+
+CREATE TABLE Persons (
+    PersonId INT PRIMARY KEY,
+    LastName VARCHAR(23),
+    FirstName VARCHAR(23),
+    Age INT
+);
+
+-- Inserting data into Persons table
+INSERT INTO Persons (PersonId, LastName, FirstName, Age)
+VALUES
+    (1, 'Nihala', 'Taskeen', 30),
+    (2, 'Clara', 'Nancy', 25),
+    (3, 'Lishma', 'Suruthi', 40),
+    (4, 'Santa', 'Santha', 28);
+
+-- Creating Orders table
+CREATE TABLE Orders2 (
+    OrderId INT PRIMARY KEY,
+    OrderNumber INT,
+    PersonId INT,
+    FOREIGN KEY (PersonId)  REFERENCES Persons(PersonId)
+);
+
+
+-- Inserting data into Orders table
+INSERT INTO Orders2 (OrderId, OrderNumber, PersonId)
+VALUES
+    (101, 1000, 1),
+    (102, 2000, 2),
+    (103, 3000, 1),
+    (104, 4000, 3);
+
+
+--SQL query to sort the LastName as ascending order and show that LastName column as first column
+--from DimCustomer table
+use AdventureWorksDW2019
+
+select lastName from [dbo].[DimCustomer]
+order by LastName;
+
+
+--SQL query to show top 20 Products from DimProduct Table
+
+SELECT TOP 20 *
+FROM DimProduct;
+
+
+--SQL query to show 50 percentage of customers from DimCustomers table
+
+select top 50 percent *
+from  [dbo].[DimCustomer] ;
+
+
+-- SQL query to find Minimum and Maximum yearly income from DimCustomer Table.
+
+select min(YearlyIncome) , max(YearlyIncome)
+from [dbo].[DimCustomer]
