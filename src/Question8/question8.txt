@@ -1,0 +1,197 @@
+--Question8
+
+--Create table EmployeeDetails
+
+create table EmployeeDetails
+(EmployeeID int identity(1,1),
+FirstName     varchar(20),
+LastName      varchar(20),
+Salary        Decimal(10,2),
+JoiningDate   date,
+Department    varchar(10),
+Gender        varchar(10));
+
+
+insert into EmployeeDetails  values
+('Vikas','Ahlawat',600000.00,'2013-02-15','IT','Male'),
+('nikita','Jain',530000.00,'2014-01-09','HR','Female'),
+('Ashish','Kumar',1000000.00,'2014-01-09','IT','Male'),
+('Nikhil','Sharma',480000.00,'2014-01-09','HR','Male'),
+('anish','kadian',500000.00,'2014-01-09','Payroll','Male');
+
+--1.Write a query to get FirstName in upper case as "First Name". 
+select CONCAT(UPPER(FirstName), ' ') as "First Name" from EmployeeDetails;
+
+
+--2.Write a query for combine FirstName and LastName and display it as "Name"
+(also include white space between first name & last name) 
+select CONCAT(FirstName, ' ', LastName) as "Name" from EmployeeDetails;
+
+--3.Get all employee details from EmployeeDetail table whose "FirstName" contains 'k' 
+select * from EmployeeDetails where FirstName like '%k%';
+
+--4.Get all employee details from EmployeeDetail table whose "FirstName" end with 'h' 
+
+--5.Get all employee detail from EmployeeDetail table whose "FirstName" not start with any single character between 'a-p'
+select * from EmployeeDetails where FirstName not like '[a-p]%';
+
+--6.Get all employee detail from EmployeeDetail table whose "FirstName" start with 'A' and contain 5 letters.
+select *
+from EmployeeDetails
+where FirstName LIKE 'A____';
+
+--7.Get all unique "Department" from EmployeeDetail table.
+select distinct Department
+from EmployeeDetails;
+
+--8.Get the highest "Salary"  & Lowest "Salary" from EmployeeDetail table.
+Select max(Salary) as highestsalary, min(Salary) as lowestsalary
+from EmployeeDetails;
+
+--9.Get the first name, current date, joiningdate and diff between current date and joining date in months.
+select FirstName, getdate() as CurrentDate, JoiningDate,
+datediff(month, JoiningDate, getdate()) as monthsincejoining
+from EmployeeDetails;
+
+--10.Get all employee details from EmployeeDetail table whose joining year is 2013.
+select *
+from EmployeeDetails
+where year(JoiningDate) = 2013;
+
+
+--11.Get all employee details from EmployeeDetail table whose joining month is Jan(1).
+select *
+from EmployeeDetails
+where MONTH(JoiningDate) = 1;
+
+--12.Get all employee details from EmployeeDetail table whose joining date between "2013-01-01" and "2013-12-01".
+select *
+from EmployeeDetails
+where JoiningDate between '2013-01-01'and '2013-12-01';
+
+--13.Select all employee detail with First name "Vikas","Ashish", and "Nikhil".
+select *
+from EmployeeDetails
+where FirstName IN ('Vikas', 'Ashish', 'Nikhil');
+
+--14.Display first name and Gender as M/F.(if male then M, if Female then F)
+select FirstName,
+       case
+           when Gender = 'Male' then 'M'
+           when gender = 'Female' then 'F'
+           else 'Unknown'
+       end as Gender
+from EmployeeDetails;
+
+--15.Select first name from "EmployeeDetail" table prifixed with "Hello "
+select CONCAT('Hello ', FirstName) AS Greeting
+from EmployeeDetails;
+
+--16.Get employee details from "EmployeeDetail" table whose Salary less than 700000
+select *
+from EmployeeDetails
+where Salary < 700000;
+
+--17.Get employee details from "EmployeeDetail" table whose Salary between 500000 than 600000
+select *
+from EmployeeDetails
+where Salary between 500000 and 600000;
+
+--18.Select second highest salary from "EmployeeDetail" table.
+select top 1 Salary
+from (
+    select distinct top 2 Salary
+    from EmployeeDetails
+    order BY Salary DESC
+) as Subquery
+order by Salary ASC;
+
+--1.Create projectDetails table with above mentioned data
+CREATE TABLE projectDetails (
+    ProjectID INT PRIMARY KEY,
+    ProjectName VARCHAR(255),
+    Department VARCHAR(255)
+);
+-- Insert INTO
+INSERT INTO ProjectDetail
+VALUES (1,1,'Task Track'),
+       (2,1,'CLP'),
+       (3,1,'Survey Management'),
+       (4,2,'HR Management'),
+       (5,3,'Task Track'),
+       (6,3,'GRS'),
+       (7,3,'DDS'),
+       (8,4,'HR Management'),
+       (9,6,'GL Management');
+
+
+--2.Write the query to get the department and department wise total(sum)  salary from "EmployeeDetail" table.
+
+SELECT Department, SUM(Salary) AS TotalSalary
+FROM EmployeeDetail
+GROUP BY Department;
+
+--3.Write the query to get the department and department wise total(sum) salary,  display it in descending order according to salary.
+
+SELECT Department, SUM(Salary) AS TotalSalary
+FROM EmployeeDetail
+GROUP BY Department
+ORDER BY TotalSalary DESC;
+
+--4.Write the query to get the department, total no. of departments, total(sum) salary with respect to department from "EmployeeDetail" table.
+
+SELECT Department, COUNT(DISTINCT Department) AS TotalDepartments, SUM(Salary) AS TotalSalary
+FROM EmployeeDetail;
+
+--5.Get department wise average salary from "EmployeeDetail" table order by salary ascending
+
+SELECT Department, AVG(Salary) AS AverageSalary
+FROM EmployeeDetail
+GROUP BY Department
+ORDER BY AverageSalary ASC;
+
+--6.Get department wise maximum salary from "EmployeeDetail" table order by salary ascending
+
+SELECT Department, MAX(Salary) AS MaxSalary
+FROM EmployeeDetail
+GROUP BY Department
+ORDER BY MaxSalary ASC;
+
+--7.Get employee name, project name order by firstname from "EmployeeDetail" and  "ProjectDetail" for those employee which have assigned project already.
+
+SELECT E.FirstName AS EmployeeName, P.ProjectName
+FROM EmployeeDetail E
+INNER JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeID
+ORDER BY E.FirstName;
+
+--8.Get employee name, project name order by firstname from "EmployeeDetail" and  "ProjectDetail" for all employee even they have not assigned project.
+
+SELECT E.FirstName AS EmployeeName, P.ProjectName
+FROM EmployeeDetail E
+LEFT JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeID
+ORDER BY E.FirstName;
+
+--9.Get all project name even they have not matching any employeeid, in left table, order by firstname from "EmployeeDetail" and "ProjectDetail".
+
+SELECT E.FirstName AS EmployeeName, P.ProjectName
+FROM EmployeeDetail E
+RIGHT JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeID
+ORDER BY E.FirstName;
+
+--10.Get complete record(employeename, project name) from both tables ([EmployeeDetail],[ProjectDetail]), if no match found in any table then show NULL.
+
+SELECT E.FirstName AS EmployeeName, P.ProjectName
+FROM EmployeeDetail E
+FULL JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeID;
+
+--11.Write down the query to fetch EmployeeName & Project who has assign more than one project.
+
+SELECT E.FirstName AS EmployeeName, P.ProjectName
+FROM EmployeeDetail E
+INNER JOIN (
+    SELECT EmployeeID
+    FROM ProjectDetail
+    GROUP BY EmployeeID
+    HAVING COUNT(*) > 1
+) AS MultiProjectEmployees ON E.EmployeeID = MultiProjectEmployees.EmployeeID
+INNER JOIN ProjectDetail P ON E.EmployeeID = P.EmployeeID;
