@@ -1,0 +1,74 @@
+
+--Question 7:
+--Create a table with above mentioned data.
+create table Employee
+(EmployeeID  int identity(1001,1) primary key,
+Ename        varchar(30),
+DeptID       int,
+Salary       int);
+
+insert into Employee values
+('John',2,4000),
+('Anna',1,3500),
+('James',1,2500),
+('David',2,5000),
+('Mark',2,3000),
+('Steve',3,4500),
+('Alice',3,3500);
+
+--1. Write SQL query to group the DeptID column and Salary need to average salary department-wise from above table.(Output columns: DeptID, Avg.Salary) 
+
+select DeptID, AVG(Salary) as "Avg.Salary"
+from Employee
+group by DeptID;
+
+-- In continuation to above apply Having condition on Average Salary > 3000 and show the result. 
+select DeptID, AVG(Salary) as "Avg.Salary"
+from Employee
+group by DeptID
+having AVG(Salary) > 3000;
+
+--Create dept. table with mentioned data 
+
+create table Department
+(DeptID    int,
+Dname     varchar(20),
+Dlocation   varchar(30));
+
+insert into Department values
+(1,'HR','Mumbai'),
+(2,'IT','New Delhi'),
+(3,'Finance','Mumbai');
+
+
+--Apply Join on Employee and Department tables using the common column DeptID. 
+
+select Employee.*, Department.DName
+from Employee
+inner  join Department on Employee.DeptID = Department.DeptID;
+
+--Write SQL query to display Dname, Avg. salary of Each dept. using Joins and Group by Clauses. 
+select D.DName as Dname, AVG(E.Salary) as "Avg. Salary"
+from Department D
+left join Employee E on D.DeptID = E.DeptID
+group by D.DName;
+
+--Write SQL query to display FirstName and BirthDate and birthdate should be between 01-01-1985 to 01-12-1985 
+--from DimCustomer and DimEmployee tables using Union and Union all functions. 
+
+select FirstName, BirthDate
+from DimCustomer
+where BirthDate between '1985-01-01' and '1985-12-01'
+union
+select FirstName, BirthDate
+from DimEmployee
+where BirthDate between '1985-01-01' and '1985-12-01';
+
+
+select FirstName, BirthDate
+from DimCustomer
+where BirthDate between '1985-01-01' and '1985-12-01'
+union all
+select FirstName, BirthDate
+from DimEmployee
+where BirthDate between '1985-01-01' and '1985-12-01';
