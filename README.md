@@ -2,7 +2,7 @@
 SQL Assignments
 Question 1
 
---Q1 (Creating Database and Tables) :
+--Q1 Creating Database and Tables :
 
 Question-1
 
@@ -28,7 +28,7 @@ Question-2
 
 * Added a column state_province to the table Locations.
 
---Q2 (Creating The Table along with Constraint)
+--Q2 Creating The Table along with Constraint
 
 * Created table for given values
 
@@ -44,7 +44,7 @@ Question-2
 
 * Created table using check constraint and AND, OR operator.
 
---Q3 (Select Statement Assessment)
+--Q3 Select Statement Assessment
 
 * Created a Salesman table with the following columns and make sure Salesman_id column should be auto increment.
 
@@ -68,7 +68,7 @@ Question-2
 
 * SQL query to display all records except San Jose city
 
---Q4 (Create a table Persons with PK & FK,analysis on AdventureworksDW2019)
+--Q4 Create a table Persons with PK & FK,analysis on AdventureworksDW2019
 
 * Created Two Table with given Columns Names & Constraints
 
@@ -80,7 +80,7 @@ Question-2
 
 * Minimum and Maximum yearly income from DimCustomer Table.
 
---Q5 (Wild cards and Aggregate functions)
+--Q5 Wild cards and Aggregate functions
 
 * List distinct records of EmailAddress where the EmailAddress having a letters combination "vi" from DimEmployee table
 
@@ -100,7 +100,7 @@ Question-2
 
 * List FirstName and Birthdate, the birth date range between 01-01-1980 to 31-12-1985 from BirthDate column in DimCustomer table, and the birthDate show in Ascending order
 
---Q6(GroupBy function Questions)
+--Q6 GroupBy function Questions
 
 * Created Two Tables According to Given Data (Employee & ProjectDetails)
 
