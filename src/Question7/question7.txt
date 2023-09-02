@@ -3,9 +3,9 @@
 --Create a table with above mentioned data.
 create table Employee
 (EmployeeID  int identity(1001,1) primary key,
-Ename        varchar(30),
-DeptID       int,
-Salary       int);
+Ename varchar(30),
+DeptID int,
+Salary int);
 
 insert into Employee values
 ('John',2,4000),
