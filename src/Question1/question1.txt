@@ -19,12 +19,12 @@ from disk = 'C:\backups\school_30082023.bak'
 with replace, recovery;
 
 
--- AdventureWork2019 Db from web source and Apply Filter on Sales Schema in Tables. 
+-- AdventureWork2019 Db from web source and Apply Filter on Sales Schema in Tables.
 use AdventureWorks2019
 select * from [Sales].[SalesOrderDetail]
 
 
- -- Q2 create a simple table Locations including columns country_id, country_name and region_id. 
+ -- Q2 create a simple table Locations including columns country_id, country_name and region_id.
 
 use school
 
@@ -39,12 +39,12 @@ CREATE TABLE Locations (
 
 EXEC sp_rename'locations', 'locations_new';
 
---add a column region_name to the table locations. 
+--add a column region_name to the table locations.
 
 ALTER TABLE Locations_new
 ADD  region_name VARCHAR(255);
 
---add a column ID as the first column of the table locations. 
+--add a column ID as the first column of the table locations.
 
 CREATE TABLE New_Locations (
     ID INT PRIMARY KEY,
