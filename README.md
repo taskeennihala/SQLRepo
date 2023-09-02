@@ -114,6 +114,60 @@ Question-2
 
 * Query to Get complete record(employeename, project name) from both tables(EmployeeDetail,ProjectDetail), if no match found in any table then show NULL.
 
+ --Q7 Union Concepts
+* Created Employee table with Id,name,Deptid,Salary.
+  
+* Average salary in Dept wise is shown using aggregate function.
+
+*  Having condition on Average Salary > 3000 and show the result.
+  
+* Created department table with deptid,name,location.
+ 
+* Join on Employee and Department tables using the common column DeptID.
+ 
+* SQL query to display Dname, Avg. salary of Each dept. using Joins and Group by Clauses.
+ 
+* FirstName and BirthDate and birthdate should be between 01-01-1985 to 01-12-1985.
+
+--Q8  Join Groupby
+Question 1
+* Created table EmployeeDetails EmployeeID, FirstName, Salary, LastName, JoiningDate, Department, Gender.
+* FirstName in upper case as "First Name". 
+* Combine FirstName and LastName and display it as "Name".
+* Employee details from EmployeeDetail table whose "FirstName" contains 'k' .
+* Employee details from EmployeeDetail table whose "FirstName" end with 'h' .
+* Employee detail from EmployeeDetail table whose "FirstName" not start with’a-p’.
+* Employee detail from EmployeeDetail table whose "FirstName" start with 'A' 
+	and contain 5 letters.
+* Unique "Department" from EmployeeDetail table.
+* Highest "Salary"  & Lowest "Salary" from EmployeeDetail table.
+* First name, current date, joiningdate and diff between current date 
+	and joining date in months.
+* Employee details from EmployeeDetail table whose joining year is 2013.
+* Employee details from EmployeeDetail table whose joining month is Jan(1).
+* Employee details from EmployeeDetail table whose joining date 
+	between "2013-01-01" and "2013-12-01".
+* All employee detail with First name "Vikas","Ashish", and "Nikhil".
+* First name and Gender as M/F.(if male then M, if Female then F)(case is used).
+* First name from "EmployeeDetail" table prifixed with "Hello ".
+* Employee details from "EmployeeDetail" table whose Salary less than 700000.
+* employee details from "EmployeeDetail" table whose Salary between 500000 than 600000.
+* Second highest salary from "EmployeeDetail" table.
+
+  Question 2
+* Created projectDetails table with ProjectID,EmployeeID,Projectname.
+* The query to get the department and department wise total(sum).
+* The query to get the department and department wise total(sum) in descending order.
+* Total no. of departments, total(sum) salary with respect to department from "EmployeeDetail" table.
+* Average salary from "EmployeeDetail" table order by salary ascending.
+* Maximum salary from "EmployeeDetail" table order by salary ascending.
+* Employee name, project name order by firstname from "EmployeeDetail" and "ProjectDetail" for those employee which have 			assigned project already.
+* Employee even they have not assigned project.
+* Project name even they have not matching any employeeid, in left table, order by firstname from "EmployeeDetail" and 			"ProjectDetail".
+* Complete record(employeename, project name) from both tables.
+* The query to fetch EmployeeName & Project who has assign
+	more than one project.
+
 
  
 
